@@ -6,10 +6,10 @@ import (
 	"net/http"
 )
 
-type InjectionResponseParser struct {
+type injectionResponseParser struct {
 }
 
-func (parser InjectionResponseParser) Parse(resp *http.Response) (SendResponse, error) {
+func (parser injectionResponseParser) Parse(resp *http.Response) (SendResponse, error) {
 	//read body into byte array
 	body, err := ioutil.ReadAll(resp.Body)
 	defer resp.Body.Close()
@@ -18,13 +18,13 @@ func (parser InjectionResponseParser) Parse(resp *http.Response) (SendResponse, 
 	}
 
 	//deserialize
-	var injectionResponse InjectionResponseDto
+	var injectionResponse injectionResponseDto
 	err = json.Unmarshal(body, &injectionResponse)
 	if err != nil {
 		return SendResponse{}, err
 	}
 
-	var sendResult = DetermineSendResult(injectionResponse.ErrorCode, resp.StatusCode)
+	var sendResult = determineSendResult(injectionResponse.ErrorCode, resp.StatusCode)
 	newResponse := SendResponse{
 		Result:             sendResult,
 		TransactionReceipt: injectionResponse.TransactionReceipt,
@@ -45,7 +45,7 @@ func (parser InjectionResponseParser) Parse(resp *http.Response) (SendResponse, 
 	return newResponse, nil
 }
 
-func DetermineSendResult(errorCode string, statusCode int) SendResult {
+func determineSendResult(errorCode string, statusCode int) SendResult {
 	switch statusCode {
 	case 200:
 		sendResult := SendResultSUCCESS.Parse(errorCode)

@@ -1,6 +1,6 @@
 package injectionapi
 
-type MessageResultDto struct {
+type messageResultDto struct {
 	Index          int
 	ErrorCode      string
 	AddressResults []AddressResult

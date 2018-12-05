@@ -1,7 +1,7 @@
 package injectionapi
 
-type InjectionResponseDto struct {
+type injectionResponseDto struct {
 	ErrorCode          string
 	TransactionReceipt string
-	MessageResults     []MessageResultDto
+	MessageResults     []messageResultDto
 }

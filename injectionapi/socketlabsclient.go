@@ -153,7 +153,7 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 
 	//add headers
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("User-Agent", "socketlabs-go/1.0.0 ("+runtime.Version()+")")
+	req.Header.Set("User-Agent", "socketlabs-go/1.0.1 ("+runtime.Version()+")")
 
 	//create http client
 	client, err := socketlabsClient.createHttpClient(socketlabsClient.ProxyURL)
@@ -168,7 +168,7 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 	}
 
 	//map to response and return
-	return InjectionResponseParser{}.Parse(resp)
+	return injectionResponseParser{}.Parse(resp)
 }
 
 func (socketlabsClient *socketlabsClient) createHttpClient(proxyUrl string) (*http.Client, error) {
