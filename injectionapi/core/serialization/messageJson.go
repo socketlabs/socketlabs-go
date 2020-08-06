@@ -28,6 +28,9 @@ type MessageJson struct {
 	// HTML portion of the message body.
 	HTMLBody string `json:"HtmlBody,omitempty"`
 
+	//AMP portion of the message body.
+	AMPBody string `json:"AmpBody,omitempty"`
+
 	// Api Template for the message.
 	APITemplate string `json:"ApiTemplate,omitempty"`
 

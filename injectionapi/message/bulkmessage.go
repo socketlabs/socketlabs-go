@@ -9,15 +9,19 @@ type BulkMessage struct {
 	Subject string
 
 	// Plain text portion of the message body.
-	// (Optional) Either PlainTextBody, HtmlBody, both or ApiTemplate must be used to set the body.
+	// (Optional) Either TextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
 	PlainTextBody string
 
 	// HTML portion of the message body.
-	// (Optional) Either PlainTextBody, HtmlBody, both or ApiTemplate must be used to set the body.
+	// (Optional) Either TextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
 	HtmlBody string
 
+	// AMP portion of the message body.
+	// (Optional) Either TextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+	AmpBody string
+
 	// Api Template for the message body.
-	// (Optional) Either PlainTextBody, HtmlBody, both or ApiTemplate must be used to set the body.
+	// (Optional) Either TextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
 	ApiTemplate string
 
 	//Custom MailingId for the message.
