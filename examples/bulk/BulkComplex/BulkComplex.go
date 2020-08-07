@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/socketlabs/socketlabs-go/examples"
+	exampleconfig "github.com/socketlabs/socketlabs-go/examples"
 	"github.com/socketlabs/socketlabs-go/injectionapi"
 	"github.com/socketlabs/socketlabs-go/injectionapi/message"
 )
@@ -68,12 +68,41 @@ func main() {
 	htmlBody.WriteString("</html>")
 	bulk.HtmlBody = htmlBody.String()
 
+	var ampBody bytes.Buffer
+	ampBody.WriteString("<!doctype html>")
+	ampBody.WriteString("<html amp4email>")
+	ampBody.WriteString("<head>")
+	ampBody.WriteString("<title>Sending an Bulk AMP Message</title>")
+	ampBody.WriteString("  <meta charset=\"utf-8\">")
+	ampBody.WriteString("  <script async src=\"https://cdn.ampproject.org/v0.js\"></script>")
+	ampBody.WriteString("  <style amp4email-boilerplate>body{visibility:hidden}</style>")
+	ampBody.WriteString("  <style amp-custom>")
+	ampBody.WriteString("    h1 {")
+	ampBody.WriteString("      margin: 1rem;")
+	ampBody.WriteString("    }")
+	ampBody.WriteString("  </style>")
+	ampBody.WriteString("</head>")
+	ampBody.WriteString("<body>")
+	ampBody.WriteString("       <h1>Sending An AMP Complex Test Message</h1>")
+	ampBody.WriteString("       <h2>Merge Data</h2>")
+	ampBody.WriteString("       <p>")
+	ampBody.WriteString("           Motto = <b>%%Motto%%</b> </br>")
+	ampBody.WriteString("           Birthday = <b>%%Birthday%%</b> </br>")
+	ampBody.WriteString("           Age = <b>%%Age%%</b> </br>")
+	ampBody.WriteString("           UpSell = <b>%%UpSell%%</b>")
+	ampBody.WriteString("       </p>")
+	ampBody.WriteString("       <h2>Example of Merge Usage</h2>")
+	ampBody.WriteString("       <p>")
+	ampBody.WriteString("           Our company motto is '<b>%%Motto%%</b>'. </br>")
+	ampBody.WriteString("           Your birthday is <b>%%Birthday%%</b> and you are <b>%%Age%%</b> years old.")
+	ampBody.WriteString("       </p>")
+	ampBody.WriteString("       <h2>UTF-8 Characters:</h2>")
+	ampBody.WriteString("       <p>✔ - Check</p>")
+	ampBody.WriteString("       </body>")
+	ampBody.WriteString("       </html>")
+	bulk.AmpBody = ampBody.String()
 	//skipping plain text for this example
 	//bulk.PlainTextBody = "Some Text"
-
-	attachment, _ := message.NewAttachment("../../Img/bus.png")
-	attachment.AddCustomHeader("Atachment-Header", "I Am A Bus")
-	bulk.Attachments = append(bulk.Attachments, attachment)
 
 	//Send the message
 	sendResponse, _ := client.SendBulk(&bulk)
