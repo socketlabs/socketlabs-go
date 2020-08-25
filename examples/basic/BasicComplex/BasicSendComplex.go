@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/socketlabs/socketlabs-go/examples"
+	exampleconfig "github.com/socketlabs/socketlabs-go/examples"
 	"github.com/socketlabs/socketlabs-go/injectionapi"
 	"github.com/socketlabs/socketlabs-go/injectionapi/message"
 )
@@ -25,9 +25,26 @@ func main() {
 	//Set reply to
 	basic.ReplyTo = message.EmailAddress{EmailAddress: "replyto@example.com", FriendlyName: "Reply Address"}
 
-	//set html and text body parts
-	basic.HtmlBody = "<body><p><strong>Lorem Ipsum</strong></p><br /><img src=\"cid:Bus\" /></body>"
+	//set html, amp, and text body parts
+	basic.HtmlBody = "<body><p><strong>Html Body</strong></p><br /><img src=\"cid:Bus\" /></body>"
 	basic.PlainTextBody = "Lorem Ipsum"
+	basic.AmpBody = "<!doctype html>" +
+		"<html amp4email>" +
+		"    <head>" +
+		"    <meta charset=\"utf-8\">" +
+		"     <script async src=\"https://cdn.ampproject.org/v0.js\"></script>" +
+		"    <style amp4email-boilerplate>body{visibility:hidden}</style>" +
+		"     <style amp-custom>" +
+		"         h1 {" +
+		"              margin: 1rem;" +
+		"            }" +
+		"      </style>" +
+		"   </head>" +
+		"        <body>" +
+		"         <h1>This is the AMP Html Body of my message</h1>" +
+		"        </body>" +
+		"</html>"
+
 	basic.CharSet = "utf-8"
 
 	//Tag message with mailing and message ids.
@@ -37,12 +54,6 @@ func main() {
 
 	//Configure custom message headers
 	basic.CustomHeaders = append(basic.CustomHeaders, message.NewCustomHeader("MyMessageHeader", "I am a message header"))
-
-	//Add an attachment
-	attachment, _ := message.NewAttachment("../../Img/bus.png")
-	attachment.ContentID = "bus" // specify the cid as 'Bus' so it can be embedded
-	attachment.CustomHeaders = append(attachment.CustomHeaders, message.CustomHeader{Name: "MyAttachmentHeader", Value: "I am an attachment header"})
-	basic.Attachments = append(basic.Attachments, attachment)
 
 	//Send the message
 	sendResponse, _ := client.SendBasic(&basic)
