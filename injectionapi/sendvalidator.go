@@ -40,7 +40,7 @@ func (sendValidator) ValidateBasicMessage(basicMessage message.BasicMessage) (re
 		response.Result = SendResultEMAILADDRESSVALIDATIONINVALIDFROM
 
 	} else if !isValidBasicMessage(basicMessage) {
-		response.Result = SendResultRECIPIENTVALIDATIONINVALIDREPLYTO
+		response.Result = SendResultEMPTYMESSAGE
 
 	} else if !isValidBasicMessageCustomHeaders(basicMessage) {
 		response.Result = SendResultMESSAGEVALIDATIONINVALIDCUSTOMHEADERS
