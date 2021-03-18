@@ -12,6 +12,7 @@ func main() {
 
 	//Create a client with proxy
 	client := injectionapi.CreateClientWithProxy(exampleconfig.ServerId(), exampleconfig.APIKey(), exampleconfig.ProxyURL())
+	client.SetRequestTimeout(10)
 
 	//Or Create the client and then set the proxy on the client
 	// client := injectionapi.CreateClient(exampleconfig.ServerId(), exampleconfig.APIKey())
