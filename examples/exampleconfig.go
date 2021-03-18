@@ -12,7 +12,7 @@ func ServerId() int {
 	//if environment variable does not exist, crash
 	if envVar == "" {
 		panic("Missing SOCKETLABS_SERVER_ID environment variable. This should be the integer value of your Socketlabs server id. " +
-			"See https://github.com/socketlabs/socketlabs-go/blob/master/README.md#obtaining-your-api-key-and-socketlabs-serverid-number")
+			"See https://github.com/PraneethChandraThota/socketlabs-go/blob/master/README.md#obtaining-your-api-key-and-socketlabs-serverid-number")
 	}
 
 	//serverId
@@ -30,7 +30,7 @@ func APIKey() string {
 	//if environment variable does not exist, crash
 	if envVar == "" {
 		panic("Missing SOCKETLABS_INJECTION_API_KEY environment variable. This should be the string value of your Socketlabs injection api key. " +
-			"See https://github.com/socketlabs/socketlabs-go/blob/master/README.md#obtaining-your-api-key-and-socketlabs-serverid-number")
+			"See https://github.com/PraneethChandraThota/socketlabs-go/blob/master/README.md#obtaining-your-api-key-and-socketlabs-serverid-number")
 	}
 	return envVar
 }

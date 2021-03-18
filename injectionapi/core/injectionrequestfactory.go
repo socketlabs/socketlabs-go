@@ -1,8 +1,8 @@
 package core
 
 import (
-	"github.com/socketlabs/socketlabs-go/injectionapi/core/serialization"
-	"github.com/socketlabs/socketlabs-go/injectionapi/message"
+	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/core/serialization"
+	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/message"
 )
 
 // InjectionRequestFactory is used to convert user-friendly message types to a structure that is ready for json-serialization

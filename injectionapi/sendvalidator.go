@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/socketlabs/socketlabs-go/injectionapi/message"
+	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/message"
 )
 
 //SendValidator is used by the SocketLabsClient to conduct basic validation on the message before sending to the Injection API.
