@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	exampleconfig "github.com/PraneethChandraThota/socketlabs-go/examples"
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi"
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/message"
+	exampleconfig "github.com/socketlabs/socketlabs-go/examples"
+	"github.com/socketlabs/socketlabs-go/injectionapi"
+	"github.com/socketlabs/socketlabs-go/injectionapi/message"
 )
 
 func main() {
