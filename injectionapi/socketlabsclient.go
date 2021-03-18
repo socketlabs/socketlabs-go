@@ -67,7 +67,7 @@ func CreateClientWithProxy(serverID int, apiKey string, proxyURL string) ISocket
 		APIKey:      apiKey,
 		EndpointURL: endpointURL,
 		ProxyURL:    proxyURL,
-		RequestTimeout: 120,
+		RequestTimeout: requestTimeout,
 	}
 }
 
