@@ -14,6 +14,7 @@ import (
 )
 
 const endpointURL = "https://inject.socketlabs.com/api/v1/email"
+const requestTimeout = 120
 
 // ISocketlabsClient is used to easily send messages through the Socketlabs Injection API
 type ISocketlabsClient interface {
@@ -55,7 +56,7 @@ func CreateClient(serverID int, apiKey string) ISocketlabsClient {
 		ServerID:    serverID,
 		APIKey:      apiKey,
 		EndpointURL: endpointURL,
-		RequestTimeout: 120,
+		RequestTimeout: requestTimeout,
 	}
 }
 
