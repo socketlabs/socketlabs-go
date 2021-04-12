@@ -2,6 +2,7 @@ package injectionapi
 
 import (
 	"errors"
+	"fmt"
 	"net"
 	"net/http"
 	"time"
@@ -40,6 +41,7 @@ func (retryHandler *retryHandler) Send(request *http.Request) (*http.Response, e
 
 			if elementInArray(ErrorCodes, response.StatusCode) {
 				attempts++
+				fmt.Println("Retry : ", attempts)
 				if attempts > retryHandler.Settings.GetMaximumNumberOfRetries() {
 					return response, errors.New("Received Http Status Code : " + string(response.StatusCode))
 				}
@@ -51,6 +53,7 @@ func (retryHandler *retryHandler) Send(request *http.Request) (*http.Response, e
 		} else {
 			if err, ok := err.(net.Error); ok && err.Timeout() {
 				attempts++
+				fmt.Println("Retry : ", attempts)
 				if attempts > retryHandler.Settings.GetMaximumNumberOfRetries() {
 					return response, err
 				}
