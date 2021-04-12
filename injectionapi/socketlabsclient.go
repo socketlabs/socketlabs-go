@@ -6,9 +6,9 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/core"
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/core/serialization"
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/message"
+	"github.com/socketlabs/socketlabs-go/injectionapi/core"
+	"github.com/socketlabs/socketlabs-go/injectionapi/core/serialization"
+	"github.com/socketlabs/socketlabs-go/injectionapi/message"
 )
 
 const endpointURL = "https://inject.socketlabs.com/api/v1/email"

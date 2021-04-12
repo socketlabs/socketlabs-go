@@ -19,7 +19,7 @@ The SocketLabs Email Delivery Go package allows you to easily send email message
 
 ## Installation
 ```
-go get github.com/PraneethChandraThota/socketlabs-go/injectionapi
+go get github.com/socketlabs/socketlabs-go/injectionapi
 ```
  
 
@@ -45,8 +45,8 @@ You can also send a file attachment in a basic message.
 ```GO 
 
 import ( 
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi"
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/message"
+	"github.com/socketlabs/socketlabs-go/injectionapi"
+	"github.com/socketlabs/socketlabs-go/injectionapi/message"
 )
 
 func main() {
@@ -78,8 +78,8 @@ optionally customizing the message via the use of MergeData.
 For more information about using Merge data, please see the [Injection API documentation](https://www.socketlabs.com/docs/inject/).
 ```GO 
 import (
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi"
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/message"
+	"github.com/socketlabs/socketlabs-go/injectionapi"
+	"github.com/socketlabs/socketlabs-go/injectionapi/message"
 )
 
 func main() {
@@ -121,70 +121,70 @@ attachments, sending content that is stored in an HTML file, advanced bulk
 merging, and even pulling recipients from a datasource.
 
 
-### [Basic send example](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/Basic/BasicSend.go)
+### [Basic send example](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/Basic/BasicSend.go)
 This example demonstrates a Basic Send.
 
-### [Basic send complex example](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/BasicComplex/BasicSendComplex.go)
+### [Basic send complex example](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicComplex/BasicSendComplex.go)
 This example demonstrates many features of the Basic Send, including adding multiple recipients, adding message and mailing id's, and adding an embedded image.
 
-### [Basic send from HTML file](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/BasicFromHtmlFile/BasicFromHtmlFile.go)
+### [Basic send from HTML file](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicFromHtmlFile/BasicFromHtmlFile.go)
 This example demonstrates how to read in your HTML content from an HTML file
 rather than passing in a string directly.
 
-### [Basic send from SocketLabs API Template](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/BasicWithApiTemplate/BasicWithApiTemplate.go)
+### [Basic send from SocketLabs API Template](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicWithApiTemplate/BasicWithApiTemplate.go)
 This example demonstrates the sending of a piece of content that was created in the
 SocketLabs Email Designer. This is also known as the [API Templates](https://www.socketlabs.com/blog/introducing-api-templates/) feature.
 
-### [Basic send with specified character set](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/BasicWithAsciiCharset/BasicWithAsciiCharset.go)
+### [Basic send with specified character set](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicWithAsciiCharset/BasicWithAsciiCharset.go)
 This example demonstrates sending with a specific character set.
 
-### [Basic send with file attachment](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/BasicWithAttachment/BasicWithAttachment.go)
+### [Basic send with file attachment](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicWithAttachment/BasicWithAttachment.go)
 This example demonstrates how to add a file attachment to your message.
 
-### [Basic send with custom email headers](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/BasicWithCustomHeaders/BasicWithCustomHeaders.go)
+### [Basic send with custom email headers](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicWithCustomHeaders/BasicWithCustomHeaders.go)
 This example demonstrates how to add custom headers to your email message.
 
-### [Basic send with embedded image](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/BasicWithEmbeddedImage/BasicWithEmbeddedImage.go)
+### [Basic send with embedded image](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicWithEmbeddedImage/BasicWithEmbeddedImage.go)
 This example demonstrates how to embed an image in your message.
 
-### [Basic send with a web proxy](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/BasicSendWithProxy/BasicSendWithProxy.go)
+### [Basic send with a web proxy](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicSendWithProxy/BasicSendWithProxy.go)
 This example demonstrates how to use a proxy with your HTTP client.
 
-### [Basic send with Amp ](https://github.com/PraneethChandraThota/socketlabs-go/blob/main/examples/basic/BasicWithAmpBody/BasicWithAmpBody.go)
+### [Basic send with Amp ](https://github.com/socketlabs/socketlabs-go/blob/main/examples/basic/BasicWithAmpBody/BasicWithAmpBody.go)
 This example demonstrates how to send a basic message with an AMP Html body.
 For more information about AMP please see [AMP Project](https://amp.dev/documentation/)
 
 
-### [Basic send with invalid file attachment](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/Invalid/BasicWithInvalidAttachment/BasicWithInvalidAttachment.go)
+### [Basic send with invalid file attachment](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/Invalid/BasicWithInvalidAttachment/BasicWithInvalidAttachment.go)
 This example demonstrates the results of attempting to do a send with an invalid attachment.
 
-### [Basic send with invalid from address](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/Invalid/BasicWithInvalidFrom/BasicWithInvalidFrom.go)
+### [Basic send with invalid from address](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/Invalid/BasicWithInvalidFrom/BasicWithInvalidFrom.go)
 This example demonstrates the results of attempting to do a send with an invalid from address.
 
-### [Basic send with invalid recipients](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/basic/Invalid/BasicWithInvalidRecipient/BasicWithInvalidRecipient.go)
+### [Basic send with invalid recipients](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/Invalid/BasicWithInvalidRecipient/BasicWithInvalidRecipient.go)
 This example demonstrates the results of attempting to do a send with invalid recipients.
 
 
-### [Bulk send with multiple recipients](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/bulk/bulk/bulk.go)
+### [Bulk send with multiple recipients](https://github.com/socketlabs/socketlabs-go/blob/master/examples/bulk/bulk/bulk.go)
 This example demonstrates how to send a bulk message to multiple recipients.
 
-### [Bulk send with complex merge including attachments](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/bulk/BulkComplex/BulkComplex.go)
+### [Bulk send with complex merge including attachments](https://github.com/socketlabs/socketlabs-go/blob/master/examples/bulk/BulkComplex/BulkComplex.go)
 This example demonstrates many features of the `BulkMessage()`, including
 adding multiple recipients, merge data, and adding an attachment.
 
-### [Bulk send with recipients pulled from a datasource](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/bulk/BulkFromDataSourceWithMerge/BulkFromDataSourceWithMerge.go)
+### [Bulk send with recipients pulled from a datasource](https://github.com/socketlabs/socketlabs-go/blob/master/examples/bulk/BulkFromDataSourceWithMerge/BulkFromDataSourceWithMerge.go)
 This example uses a mock repository class to demonstrate how you would pull
 your recipients from a database and create a bulk mailing with merge data.
 
-### [Bulk send with Ascii charset and special characters](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/bulk/BulkWithAsciiCharsetMergeData/BulkWithAsciiCharsetMergeData.go)
+### [Bulk send with Ascii charset and special characters](https://github.com/socketlabs/socketlabs-go/blob/master/examples/bulk/BulkWithAsciiCharsetMergeData/BulkWithAsciiCharsetMergeData.go)
 This example demonstrates how to send a bulk message with a specified character
 set and special characters.
 
-### [Bulk send with merge data](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/examples/bulk/BulkWithMergeData/BulkWithMergeData.go)
+### [Bulk send with merge data](https://github.com/socketlabs/socketlabs-go/blob/master/examples/bulk/BulkWithMergeData/BulkWithMergeData.go)
 This example demonstrates how to send a bulk message to multiple recipients with
 unique merge data per recipient.
 
-### [Bulk send with Amp ](https://github.com/PraneethChandraThota/socketlabs-go/blob/main/examples/bulk/BulkWithAmpBody/BulkWithAmpBody.go)
+### [Bulk send with Amp ](https://github.com/socketlabs/socketlabs-go/blob/main/examples/bulk/BulkWithAmpBody/BulkWithAmpBody.go)
 This example demonstrates how to send a bulk message with an AMP Html body.
 For more information about AMP please see [AMP Project](https://amp.dev/documentation/)
 
@@ -197,4 +197,4 @@ For more information about AMP please see [AMP Project](https://amp.dev/document
 
 <a name="license"></a>
 # License
-The SocketLabs.EmailDelivery library and all associated code, including any code samples, are [MIT Licensed](https://github.com/PraneethChandraThota/socketlabs-go/blob/master/LICENSE.MD).
+The SocketLabs.EmailDelivery library and all associated code, including any code samples, are [MIT Licensed](https://github.com/socketlabs/socketlabs-go/blob/master/LICENSE.MD).

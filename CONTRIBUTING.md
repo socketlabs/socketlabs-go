@@ -1,7 +1,7 @@
 # Contributing to 'socketlabs-go'
 
 If you discover issues, have ideas for improvements or new features,
-please report them to the [issue tracker](https://github.com/PraneethChandraThota/socketlabs-go/issues) of the repository or
+please report them to the [issue tracker](https://github.com/socketlabs/socketlabs-go/issues) of the repository or
 submit a pull request. Please, try to follow these guidelines when you
 do so.
 
@@ -23,7 +23,7 @@ do so.
 ## <a name="feature"></a> Want a Feature?
 
 You can request a new feature by submitting an issue to our
-[GitHub Repository](https://github.com/PraneethChandraThota/socketlabs-go). If you would like to implement a new feature then
+[GitHub Repository](https://github.com/socketlabs/socketlabs-go). If you would like to implement a new feature then
 consider what kind of change it is:
 
 * **Major Changes** that you wish to contribute to the project should be
@@ -32,7 +32,7 @@ consider what kind of change it is:
   prevent duplication of work, and help you to craft the change so that it is
   successfully accepted into the project.
 * **Small Changes** can be crafted and submitted to the
-  [GitHub Repository](https://github.com/PraneethChandraThota/socketlabs-go) as a Pull Request.
+  [GitHub Repository](https://github.com/socketlabs/socketlabs-go) as a Pull Request.
   
   ## <a name="pull"></a> Creating a Pull Request?
   

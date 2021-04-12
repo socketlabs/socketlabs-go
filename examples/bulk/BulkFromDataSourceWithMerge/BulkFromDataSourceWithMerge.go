@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/PraneethChandraThota/socketlabs-go/examples"
-	"github.com/PraneethChandraThota/socketlabs-go/examples/Integration/Repository"
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi"
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/message"
+	"github.com/socketlabs/socketlabs-go/examples"
+	"github.com/socketlabs/socketlabs-go/examples/Integration/Repository"
+	"github.com/socketlabs/socketlabs-go/injectionapi"
+	"github.com/socketlabs/socketlabs-go/injectionapi/message"
 )
 
 func main() {
