@@ -12,9 +12,13 @@ import (
 func main() {
 
 	//Create a client with proxy
-	client := injectionapi.CreateClientWithProxy(exampleconfig.ServerId(), exampleconfig.APIKey(), exampleconfig.ProxyURL())
+	//client := injectionapi.CreateClientWithProxy(exampleconfig.ServerId(), exampleconfig.APIKey(), exampleconfig.ProxyURL())
+	client := injectionapi.CreateClient(exampleconfig.ServerId(), exampleconfig.APIKey())
 	client.SetRequestTimeout(10)
-	fmt.Println("Retries : ", client.GetNumberOfRetries())
+	client.SetNumberOfRetries(2)
+	client.SetEndpointURL("http://127.0.0.1:5000/")
+	fmt.Println("Number of Retries set : ", client.GetNumberOfRetries())
+
 
 	//Or Create the client and then set the proxy on the client
 	// client := injectionapi.CreateClient(exampleconfig.ServerId(), exampleconfig.APIKey())
