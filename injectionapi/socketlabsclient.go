@@ -1,11 +1,9 @@
 package injectionapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"net/http"
 	"net/url"
-	"runtime"
 	"time"
 
 	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/core"
@@ -186,16 +184,6 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 		return SendResponse{}, err
 	}
 
-	//create request
-	req, err := http.NewRequest("POST", socketlabsClient.GetEndpointURL(), bytes.NewBuffer(serializedRequest))
-	if err != nil {
-		return SendResponse{}, err
-	}
-
-	//add headers
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("User-Agent", "socketlabs-go/1.0.1 ("+runtime.Version()+")")
-
 	//create http client
 	client, err := socketlabsClient.createHttpClient(socketlabsClient.ProxyURL)
 	if err != nil {
@@ -203,9 +191,9 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 	}
 
 	//issue http request
-	//resp, err := client.Do(req)
 	retryHandler := CreateRetryHandler(client, socketlabsClient.EndpointURL, CreateRetrySettings(socketlabsClient.NumberOfRetries))
-	resp, err := retryHandler.Send(req)
+	resp, err := retryHandler.Send(serializedRequest)
+
 	if err != nil {
 		return SendResponse{}, err
 	}
