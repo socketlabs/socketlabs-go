@@ -15,6 +15,7 @@ import (
 
 const endpointURL = "https://inject.socketlabs.com/api/v1/email"
 const requestTimeout = 120
+const numberOfRetries = 0
 
 // ISocketlabsClient is used to easily send messages through the Socketlabs Injection API
 type ISocketlabsClient interface {
@@ -34,11 +35,17 @@ type ISocketlabsClient interface {
 	// SetRequestTimeout sets the timeout.
 	SetRequestTimeout(timeout int)
 
+	// SetNumberOfRetries sets the retries
+	SetNumberOfRetries(retries int)
+
 	// GetEndpointURL retreives the API endpoint.
 	GetEndpointURL() string
 
 	// GetRequestTimeout retreives the timeout.
 	GetRequestTimeout() int
+
+	// GetNumberOfRetries retreives the retries
+	GetNumberOfRetries() int
 }
 
 // socketlabsClient is the default ISocketlabsClient implementation
@@ -48,6 +55,7 @@ type socketlabsClient struct {
 	EndpointURL string
 	ProxyURL    string
 	RequestTimeout int
+	NumberOfRetries int
 }
 
 // CreateClient instatiates new client using the specified credentials
@@ -57,6 +65,7 @@ func CreateClient(serverID int, apiKey string) ISocketlabsClient {
 		APIKey:      apiKey,
 		EndpointURL: endpointURL,
 		RequestTimeout: requestTimeout,
+		NumberOfRetries: numberOfRetries,
 	}
 }
 
@@ -68,6 +77,7 @@ func CreateClientWithProxy(serverID int, apiKey string, proxyURL string) ISocket
 		EndpointURL: endpointURL,
 		ProxyURL:    proxyURL,
 		RequestTimeout: requestTimeout,
+		NumberOfRetries: numberOfRetries,
 	}
 }
 
@@ -86,6 +96,11 @@ func (socketlabsClient *socketlabsClient) SetRequestTimeout(timeout int) {
 	socketlabsClient.RequestTimeout = timeout
 }
 
+// SetNumberOfRetries sets the retries
+func (socketlabsClient *socketlabsClient) SetNumberOfRetries(retries int)  {
+	socketlabsClient.NumberOfRetries = retries
+}
+
 // GetEndpointURL retreives the API endpoint.
 func (socketlabsClient *socketlabsClient) GetEndpointURL() string {
 	return socketlabsClient.EndpointURL
@@ -94,6 +109,11 @@ func (socketlabsClient *socketlabsClient) GetEndpointURL() string {
 // GetRequestTimeout retreives the timeout
 func (socketlabsClient *socketlabsClient) GetRequestTimeout() int {
 	return socketlabsClient.RequestTimeout
+}
+
+// GetNumberOfRetries retreives the retries
+func (socketlabsClient *socketlabsClient) GetNumberOfRetries() int {
+	return socketlabsClient.NumberOfRetries
 }
 
 // SendBasic sends a basic email message and returns the response from the Injection API.
@@ -183,7 +203,9 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 	}
 
 	//issue http request
-	resp, err := client.Do(req)
+	//resp, err := client.Do(req)
+	retryHandler := core.CreateRetryHandler(client, socketlabsClient.EndpointURL, CreateRetrySettings(socketlabsClient.NumberOfRetries))
+	resp, err := retryHandler.Send(req)
 	if err != nil {
 		return SendResponse{}, err
 	}

@@ -11,12 +11,12 @@ type RetryHandler interface {
 }
 
 type retryHandler struct {
-	HttpClient http.Client
+	HttpClient *http.Client
 	EndpointUrl string
 	Settings injectionapi.RetrySettings
 }
 
-func CreateRetryHandler(client http.Client, endpointUrl string, settings injectionapi.RetrySettings) RetryHandler {
+func CreateRetryHandler(client *http.Client, endpointUrl string, settings injectionapi.RetrySettings) RetryHandler {
 	return &retryHandler{
 		HttpClient: client,
 		EndpointUrl: endpointUrl,
