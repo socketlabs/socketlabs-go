@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net"
 
 	"github.com/PraneethChandraThota/socketlabs-go/examples"
 	"github.com/PraneethChandraThota/socketlabs-go/injectionapi"
@@ -41,6 +42,10 @@ func main() {
 	fmt.Println(sendResponse.ResponseMessage)
 
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Error : ", err)
+		err, ok := err.(net.Error)
+		if ok && err.Timeout() {
+			fmt.Println("Time out error occured : ", err)
+		}
 	}
 }
