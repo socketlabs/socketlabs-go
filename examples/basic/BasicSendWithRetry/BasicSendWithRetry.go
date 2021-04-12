@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net"
-
 	"github.com/PraneethChandraThota/socketlabs-go/examples"
 	"github.com/PraneethChandraThota/socketlabs-go/injectionapi"
 	"github.com/PraneethChandraThota/socketlabs-go/injectionapi/message"
@@ -12,12 +10,9 @@ import (
 func main() {
 
 	//Create a client with proxy
-	//client := injectionapi.CreateClientWithProxy(exampleconfig.ServerId(), exampleconfig.APIKey(), exampleconfig.ProxyURL())
-	client := injectionapi.CreateClient(exampleconfig.ServerId(), exampleconfig.APIKey())
+	client := injectionapi.CreateClientWithProxy(exampleconfig.ServerId(), exampleconfig.APIKey(), exampleconfig.ProxyURL())
 	client.SetRequestTimeout(10)
 	client.SetNumberOfRetries(2)
-	client.SetEndpointURL("http://127.0.0.1:5000/")
-	fmt.Println("Number of Retries set : ", client.GetNumberOfRetries())
 
 
 	//Or Create the client and then set the proxy on the client
@@ -46,10 +41,6 @@ func main() {
 	fmt.Println(sendResponse.ResponseMessage)
 
 	if err != nil {
-		fmt.Println("Error : ", err)
-		e, ok := err.(net.Error)
-		if ok && e.Timeout() {
-			fmt.Println("Time out error occured : ", e)
-		}
+		fmt.Println(err)
 	}
 }
