@@ -1,9 +1,7 @@
-package core
+package injectionapi
 
 import (
 	"net/http"
-
-	"github.com/PraneethChandraThota/socketlabs-go/injectionapi"
 )
 
 type RetryHandler interface {
@@ -13,10 +11,10 @@ type RetryHandler interface {
 type retryHandler struct {
 	HttpClient *http.Client
 	EndpointUrl string
-	Settings injectionapi.RetrySettings
+	Settings RetrySettings
 }
 
-func CreateRetryHandler(client *http.Client, endpointUrl string, settings injectionapi.RetrySettings) RetryHandler {
+func CreateRetryHandler(client *http.Client, endpointUrl string, settings RetrySettings) RetryHandler {
 	return &retryHandler{
 		HttpClient: client,
 		EndpointUrl: endpointUrl,
