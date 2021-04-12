@@ -193,7 +193,6 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 	//issue http request
 	retryHandler := CreateRetryHandler(client, socketlabsClient.EndpointURL, CreateRetrySettings(socketlabsClient.NumberOfRetries))
 	resp, err := retryHandler.Send(serializedRequest)
-
 	if err != nil {
 		return SendResponse{}, err
 	}

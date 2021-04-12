@@ -12,11 +12,11 @@ import (
 func main() {
 
 	//Create a client with proxy
-	client := injectionapi.CreateClientWithProxy(exampleconfig.ServerId(), exampleconfig.APIKey(), exampleconfig.ProxyURL())
-	//client := injectionapi.CreateClient(exampleconfig.ServerId(), exampleconfig.APIKey())
+	//client := injectionapi.CreateClientWithProxy(exampleconfig.ServerId(), exampleconfig.APIKey(), exampleconfig.ProxyURL())
+	client := injectionapi.CreateClient(exampleconfig.ServerId(), exampleconfig.APIKey())
 	client.SetRequestTimeout(10)
 	client.SetNumberOfRetries(2)
-	//client.SetEndpointURL("http://127.0.0.1:5000/")
+	client.SetEndpointURL("http://127.0.0.1:5000/")
 	fmt.Println("Number of Retries set : ", client.GetNumberOfRetries())
 
 
@@ -47,9 +47,9 @@ func main() {
 
 	if err != nil {
 		fmt.Println("Error : ", err)
-		err, ok := err.(net.Error)
-		if ok && err.Timeout() {
-			fmt.Println("Time out error occured : ", err)
+		e, ok := err.(net.Error)
+		if ok && e.Timeout() {
+			fmt.Println("Time out error occured : ", e)
 		}
 	}
 }

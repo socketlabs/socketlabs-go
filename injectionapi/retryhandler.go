@@ -55,25 +55,29 @@ func (retryHandler *retryHandler) Send(serializedRequest []byte) (*http.Response
 		if err == nil {
 
 			if elementInArray(ErrorCodes, response.StatusCode) {
+
 				attempts++
-				fmt.Println("Retry : ", attempts, " Status Code : ", response.StatusCode)
+
 				if attempts > retryHandler.Settings.GetMaximumNumberOfRetries() {
 					return response, errors.New(fmt.Sprintf("Received Http Status Code : %d", response.StatusCode))
 				}
 
 				time.Sleep(waitInterval)
-			} else {
 
+			} else {
 				return response, err
 			}
 		} else {
-			if err, ok := err.(net.Error); ok && err.Timeout() {
+			if e, ok := err.(net.Error); ok && e.Timeout() {
+
 				attempts++
-				fmt.Println("Retry : ", attempts, " Timeout Error : ", err)
+
 				if attempts > retryHandler.Settings.GetMaximumNumberOfRetries() {
-					return response, err
+					return response, e
 				}
+
 				time.Sleep(waitInterval)
+
 			} else {
 				return response, err
 			}
