@@ -59,7 +59,7 @@ func (retryHandler *retryHandler) Send(serializedRequest []byte) (*http.Response
 				attempts++
 
 				if attempts > retryHandler.Settings.GetMaximumNumberOfRetries() {
-					return response, errors.New(fmt.Sprintf("Received Http Status Code : %d", response.StatusCode))
+					return response, errors.New(fmt.Sprintf("HttpStatusCode: %d. Response Contains Error", response.StatusCode))
 				}
 
 				time.Sleep(waitInterval)
