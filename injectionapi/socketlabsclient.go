@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"runtime"
+	"time"
 
 	"github.com/socketlabs/socketlabs-go/injectionapi/core"
 	"github.com/socketlabs/socketlabs-go/injectionapi/core/serialization"
@@ -13,6 +14,7 @@ import (
 )
 
 const endpointURL = "https://inject.socketlabs.com/api/v1/email"
+const requestTimeout = 120
 
 // ISocketlabsClient is used to easily send messages through the Socketlabs Injection API
 type ISocketlabsClient interface {
@@ -29,8 +31,14 @@ type ISocketlabsClient interface {
 	// SetProxyUrl sets the proxy url.
 	SetProxyURL(proxyURL string)
 
+	// SetRequestTimeout sets the timeout.
+	SetRequestTimeout(timeout int)
+
 	// GetEndpointURL retreives the API endpoint.
 	GetEndpointURL() string
+
+	// GetRequestTimeout retreives the timeout.
+	GetRequestTimeout() int
 }
 
 // socketlabsClient is the default ISocketlabsClient implementation
@@ -39,6 +47,7 @@ type socketlabsClient struct {
 	APIKey      string
 	EndpointURL string
 	ProxyURL    string
+	RequestTimeout int
 }
 
 // CreateClient instatiates new client using the specified credentials
@@ -47,6 +56,7 @@ func CreateClient(serverID int, apiKey string) ISocketlabsClient {
 		ServerID:    serverID,
 		APIKey:      apiKey,
 		EndpointURL: endpointURL,
+		RequestTimeout: requestTimeout,
 	}
 }
 
@@ -57,6 +67,7 @@ func CreateClientWithProxy(serverID int, apiKey string, proxyURL string) ISocket
 		APIKey:      apiKey,
 		EndpointURL: endpointURL,
 		ProxyURL:    proxyURL,
+		RequestTimeout: requestTimeout,
 	}
 }
 
@@ -70,9 +81,19 @@ func (socketlabsClient *socketlabsClient) SetProxyURL(proxyURL string) {
 	socketlabsClient.ProxyURL = proxyURL
 }
 
+// SetRequestTimeout sets the timeout
+func (socketlabsClient *socketlabsClient) SetRequestTimeout(timeout int) {
+	socketlabsClient.RequestTimeout = timeout
+}
+
 // GetEndpointURL retreives the API endpoint.
 func (socketlabsClient *socketlabsClient) GetEndpointURL() string {
 	return socketlabsClient.EndpointURL
+}
+
+// GetRequestTimeout retreives the timeout
+func (socketlabsClient *socketlabsClient) GetRequestTimeout() int {
+	return socketlabsClient.RequestTimeout
 }
 
 // SendBasic sends a basic email message and returns the response from the Injection API.
@@ -185,7 +206,11 @@ func (socketlabsClient *socketlabsClient) createHttpClient(proxyUrl string) (*ht
 		return nil, err
 	}
 
+	//converting timeout from int to time
+	var timeout time.Duration
+	timeout = time.Duration(socketlabsClient.RequestTimeout) * time.Second
+
 	//create client with proxy url
-	client := &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyURL)}}
+	client := &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyURL)}, Timeout: timeout}
 	return client, nil
 }

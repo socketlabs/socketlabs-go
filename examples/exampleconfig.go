@@ -40,5 +40,5 @@ func EndpointURL() string {
 }
 
 func ProxyURL() string {
-	return "http://localhost:8888"
+	return "http://localhost:4433"
 }
