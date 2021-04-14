@@ -149,6 +149,7 @@ This example demonstrates how to embed an image in your message.
 
 ### [Basic send with a web proxy](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicSendWithProxy/BasicSendWithProxy.go)
 This example demonstrates how to use a proxy with your HTTP client.
+
 ### [Basic send with retry enabled](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicSendWithRetry/BasicSendWithRetry.go)
 This example demonstrates how to use the retry logic with your HTTP client.
 
