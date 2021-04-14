@@ -149,11 +149,12 @@ This example demonstrates how to embed an image in your message.
 
 ### [Basic send with a web proxy](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicSendWithProxy/BasicSendWithProxy.go)
 This example demonstrates how to use a proxy with your HTTP client.
+### [Basic send with retry enabled](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicSendWithRetry/BasicSendWithRetry.go)
+This example demonstrates how to use the retry logic with your HTTP client.
 
 ### [Basic send with Amp ](https://github.com/socketlabs/socketlabs-go/blob/main/examples/basic/BasicWithAmpBody/BasicWithAmpBody.go)
 This example demonstrates how to send a basic message with an AMP Html body.
 For more information about AMP please see [AMP Project](https://amp.dev/documentation/)
-
 
 ### [Basic send with invalid file attachment](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/Invalid/BasicWithInvalidAttachment/BasicWithInvalidAttachment.go)
 This example demonstrates the results of attempting to do a send with an invalid attachment.
@@ -163,7 +164,6 @@ This example demonstrates the results of attempting to do a send with an invalid
 
 ### [Basic send with invalid recipients](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/Invalid/BasicWithInvalidRecipient/BasicWithInvalidRecipient.go)
 This example demonstrates the results of attempting to do a send with invalid recipients.
-
 
 ### [Bulk send with multiple recipients](https://github.com/socketlabs/socketlabs-go/blob/master/examples/bulk/bulk/bulk.go)
 This example demonstrates how to send a bulk message to multiple recipients.
