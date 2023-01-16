@@ -45,6 +45,9 @@ func (sendValidator) ValidateBasicMessage(basicMessage message.BasicMessage) (re
 	} else if !isValidBasicMessageCustomHeaders(basicMessage) {
 		response.Result = SendResultMESSAGEVALIDATIONINVALIDCUSTOMHEADERS
 
+	} else if !isValidBasicMessageMetadata(basicMessage) {
+		response.Result = SendResultMESSAGEVALIDATIONINVALIDMETADATA
+
 	} else {
 		response.Result = SendResultSUCCESS
 		validRecipientCount, allRecipients := isValidBasicRecipientCount(basicMessage)
@@ -87,6 +90,8 @@ func (sendValidator) ValidateBulkMessage(bulkMessage message.BulkMessage) (respo
 		response.Result = SendResultRECIPIENTVALIDATIONINVALIDREPLYTO
 	} else if !isValidBulkMessageCustomHeaders(bulkMessage) {
 		response.Result = SendResultMESSAGEVALIDATIONINVALIDCUSTOMHEADERS
+	} else if !isValidBulkMessageMetadata(bulkMessage) {
+		response.Result = SendResultMESSAGEVALIDATIONINVALIDMETADATA
 	} else {
 		response.Result = SendResultSUCCESS
 		validRecipientCount, allRecipients := isValidBulkRecipientCount(bulkMessage)
@@ -172,6 +177,36 @@ func isValidBulkMessageCustomHeaders(message message.BulkMessage) bool {
 	}
 	for _, header := range message.CustomHeaders {
 		if !header.IsValid() {
+			return false
+		}
+	}
+	return true
+}
+
+func isValidBasicMessageMetadata(message message.BasicMessage) bool {
+	if message.Metadatas == nil {
+		return true
+	}
+	if len(message.Metadatas) == 0 {
+		return true
+	}
+	for _, metadata := range message.Metadatas {
+		if !metadata.IsValid() {
+			return false
+		}
+	}
+	return true
+}
+
+func isValidBulkMessageMetadata(message message.BulkMessage) bool {
+	if message.Metadatas == nil {
+		return true
+	}
+	if len(message.Metadatas) == 0 {
+		return true
+	}
+	for _, metadata := range message.Metadatas {
+		if !metadata.IsValid() {
 			return false
 		}
 	}

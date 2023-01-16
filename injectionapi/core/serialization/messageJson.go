@@ -51,4 +51,11 @@ type MessageJson struct {
 
 	// List of custom message headers added to the message.
 	CustomHeaders []CustomHeadersJson `json:"CustomHeaders,omitempty"`
+
+	// List of custom meta data added to the message.
+	Metadatas []MetadataJson `json:"Metadata,omitempty"`
+
+	// List of tags added to the message.
+	Tags []string `json:"Tags,omitempty"`
+
 }

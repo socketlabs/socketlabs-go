@@ -144,6 +144,12 @@ This example demonstrates how to add a file attachment to your message.
 ### [Basic send with custom email headers](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicWithCustomHeaders/BasicWithCustomHeaders.go)
 This example demonstrates how to add custom headers to your email message.
 
+### [Basic send with meta data](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicWithMetadata/BasicWithMetadata.go)
+This example demonstrates how to add meta data to your email message.
+
+### [Basic send with tags](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicWithTags/BasicWithTags.go)
+This example demonstrates how to add tags to your email message.
+
 ### [Basic send with embedded image](https://github.com/socketlabs/socketlabs-go/blob/master/examples/basic/BasicWithEmbeddedImage/BasicWithEmbeddedImage.go)
 This example demonstrates how to embed an image in your message.
 

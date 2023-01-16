@@ -45,6 +45,11 @@ func main() {
 
 	bulk.AddCustomHeader("testMessageHeader", "I am a message header")
 
+	bulk.AddMetadata("testMetadata", "I am meta data")
+
+	//Add message tags
+	bulk.Tags = append(bulk.Tags, "I am a Tag")
+
 	var htmlBody bytes.Buffer
 	htmlBody.WriteString("<html>")
 	htmlBody.WriteString("   <head><title>Complex</title></head>")

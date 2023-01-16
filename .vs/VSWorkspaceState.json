@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\examples",
+    "\\examples\\basic",
+    "\\examples\\basic\\Basic",
+    "\\examples\\basic\\BasicFromHtmlFile",
+    "\\examples\\basic\\BasicSendWithProxy",
+    "\\examples\\bulk",
+    "\\examples\\bulk\\BulkFromDataSourceWithMerge",
+    "\\examples\\bulk\\BulkWithAmpBody",
+    "\\examples\\bulk\\BulkWithMergeData"
+  ],
+  "SelectedNode": "\\examples\\bulk\\BulkWithMergeData\\BulkWithMergeData.go",
+  "PreviewInSolutionExplorer": false
+}

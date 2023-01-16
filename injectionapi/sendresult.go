@@ -91,6 +91,8 @@ func (sendResult SendResult) ToResponseMessage() string {
 		return "SDK Validation Error : No message body was found in the message"
 	case SendResultMESSAGEVALIDATIONINVALIDCUSTOMHEADERS:
 		return "SDK Validation Error : Invalid Custom Headers were found in the message"
+	case SendResultMESSAGEVALIDATIONINVALIDMETADATA:
+		return "SDK Validation Error : Invalid Meta Data was found in the message"
 	case SendResultRECIPIENTVALIDATIONINVALIDREPLYTO:
 		return "SDK Validation Error : Invalid ReplyTo Address was found in the message"
 	case SendResultRECIPIENTVALIDATIONINVALIDRECIPIENTS:
@@ -137,7 +139,8 @@ var m = map[SendResult]string{
 	SendResultRECIPIENTVALIDATIONINVALIDRECIPIENTS:  "RecipientValidationInvalidRecipients",
 	SendResultMESSAGEVALIDATIONEMPTYSUBJECT:         "MessageValidationEmptySubject",
 	SendResultMESSAGEVALIDATIONEMPTYMESSAGE:         "MessageValidationEmptyMessage",
-	SendResultMESSAGEVALIDATIONINVALIDCUSTOMHEADERS: "MessageValidationInvalidCustomHeaders"}
+	SendResultMESSAGEVALIDATIONINVALIDCUSTOMHEADERS: "MessageValidationInvalidCustomHeaders",
+	SendResultMESSAGEVALIDATIONINVALIDMETADATA:		 "MessageValidationInvalidMetadata"}
 
 const (
 	//SendResultUNKNOWNERROR - An error has occured that was unforeseen
@@ -250,4 +253,7 @@ const (
 
 	//SendResultMESSAGEVALIDATIONINVALIDCUSTOMHEADERS -  Invalid custom headers found
 	SendResultMESSAGEVALIDATIONINVALIDCUSTOMHEADERS
+
+	//SendResultMESSAGEVALIDATIONINVALIDMETADATA -  Invalid meta data found
+	SendResultMESSAGEVALIDATIONINVALIDMETADATA
 )
