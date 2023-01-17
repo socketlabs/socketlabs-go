@@ -55,6 +55,13 @@ func main() {
 	//Configure custom message headers
 	basic.CustomHeaders = append(basic.CustomHeaders, message.NewCustomHeader("MyMessageHeader", "I am a message header"))
 
+	//Configure message meta data
+	basic.Metadata = append(basic.Metadata, message.NewMetadata("MyMetaDatra", "I am meta data"))
+
+	//Add message tags
+	basic.Tags = append(basic.Tags, "I am a Tag")
+	basic.Tags = append(basic.Tags, "go-Example")
+
 	//Send the message
 	sendResponse, _ := client.SendBasic(&basic)
 

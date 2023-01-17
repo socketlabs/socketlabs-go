@@ -52,6 +52,14 @@ type BasicMessage struct {
 	//(Optional)
 	CustomHeaders []CustomHeader
 
+	//Optional collection of meta data for the message.
+	//(Optional)
+	Metadata []Metadata
+
+	//Optional collection of tags for the message.
+	//(Optional)
+	Tags []string
+
 	//Collection of To Recipients for the message.
 	To []EmailAddress
 
@@ -103,4 +111,15 @@ func (basic *BasicMessage) AddBccFriendlyEmailAddress(email string, friendly str
 func (basic *BasicMessage) AddCustomHeader(name string, value string) {
 	customHeader := NewCustomHeader(name, value)
 	basic.CustomHeaders = append(basic.CustomHeaders, customHeader)
+}
+
+// AddMetadata adds meta data to the message
+func (basic *BasicMessage) AddMetadata(key string, value string) {
+	metadata := NewMetadata(key, value)
+	basic.Metadata = append(basic.Metadata, metadata)
+}
+
+// AddTag adds a tag to the message
+func (basic *BasicMessage) AddTag(value string) {
+	basic.Tags = append(basic.Tags, value)
 }

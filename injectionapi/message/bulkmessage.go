@@ -52,6 +52,14 @@ type BulkMessage struct {
 	// (Optional)
 	CustomHeaders []CustomHeader
 
+	//Optional collection of meta data for the message.
+	//(Optional)
+	Metadata []Metadata
+
+	//Optional collection of tags for the message.
+	//(Optional)
+	Tags []string
+
 	//Collection of To Recipients for the message.
 	To []BulkRecipient
 
@@ -78,6 +86,17 @@ func (bulk *BulkMessage) AddToFriendlyBulkRecipient(email string, friendly strin
 func (bulk *BulkMessage) AddCustomHeader(name string, value string) {
 	customHeader := NewCustomHeader(name, value)
 	bulk.CustomHeaders = append(bulk.CustomHeaders, customHeader)
+}
+
+// AddCustomHeader adds meta data to the message
+func (bulk *BulkMessage) AddMetadata(key string, value string) {
+	metadata := NewMetadata(key, value)
+	bulk.Metadata = append(bulk.Metadata, metadata)
+}
+
+// AddCustomHeader adds a tag to the message
+func (bulk *BulkMessage) AddTag(value string) {
+	bulk.Tags = append(bulk.Tags, value)
 }
 
 // AddGlobalMergeData adds global merge data
