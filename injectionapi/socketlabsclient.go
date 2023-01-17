@@ -183,7 +183,7 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 	if err != nil {
 		return SendResponse{}, err
 	}
-	fmt.Println(serializedRequest)
+
 	//create http client
 	client, err := socketlabsClient.createHttpClient(socketlabsClient.ProxyURL)
 	if err != nil {
