@@ -54,7 +54,7 @@ type BulkMessage struct {
 
 	//Optional collection of meta data for the message.
 	//(Optional)
-	Metadatas []Metadata
+	Metadata []Metadata
 
 	//Optional collection of tags for the message.
 	//(Optional)
@@ -89,9 +89,9 @@ func (bulk *BulkMessage) AddCustomHeader(name string, value string) {
 }
 
 // AddCustomHeader adds meta data to the message
-func (bulk *BulkMessage) AddMetadata(name string, value string) {
-	metadata := NewMetadata(name, value)
-	bulk.Metadatas = append(bulk.Metadatas, metadata)
+func (bulk *BulkMessage) AddMetadata(key string, value string) {
+	metadata := NewMetadata(key, value)
+	bulk.Metadata = append(bulk.Metadata, metadata)
 }
 
 // AddCustomHeader adds a tag to the message

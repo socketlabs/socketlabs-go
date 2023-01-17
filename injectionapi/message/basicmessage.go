@@ -54,7 +54,7 @@ type BasicMessage struct {
 
 	//Optional collection of meta data for the message.
 	//(Optional)
-	Metadatas []Metadata
+	Metadata []Metadata
 
 	//Optional collection of tags for the message.
 	//(Optional)
@@ -114,9 +114,9 @@ func (basic *BasicMessage) AddCustomHeader(name string, value string) {
 }
 
 // AddMetadata adds meta data to the message
-func (basic *BasicMessage) AddMetadata(name string, value string) {
-	metadata := NewMetadata(name, value)
-	basic.Metadatas = append(basic.Metadatas, metadata)
+func (basic *BasicMessage) AddMetadata(key string, value string) {
+	metadata := NewMetadata(key, value)
+	basic.Metadata = append(basic.Metadata, metadata)
 }
 
 // AddTag adds a tag to the message

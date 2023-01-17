@@ -2,14 +2,14 @@ package message
 
 // CustomHeader  info
 type Metadata struct {
-	Name  string
+	Key  string
 	Value string
 }
 
 // NewMetadata  Factory Constructor
-func NewMetadata(name string, value string) Metadata {
+func NewMetadata(key string, value string) Metadata {
 	var c Metadata
-	c.Name = name
+	c.Key = key
 	c.Value = value
 	return c
 }
@@ -17,7 +17,7 @@ func NewMetadata(name string, value string) Metadata {
 // IsValid  Determines if the Metadata is valid
 func (c Metadata) IsValid() bool {
 
-	if len(c.Name) == 0 {
+	if len(c.Key) == 0 {
 		return false
 	}
 

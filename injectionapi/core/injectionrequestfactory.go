@@ -88,7 +88,7 @@ func (factory InjectionRequestFactory) GenerateBulkRequest(message *message.Bulk
 	messageJson.CustomHeaders = getCustomHeaders(&message.CustomHeaders)
 
 	//set meta data
-	messageJson.Metadatas = getMetadata(&message.Metadatas)
+	messageJson.Metadata = getMetadata(&message.Metadata)
 
 	//set from address
 	messageJson.From = serialization.AddressJson{
@@ -202,7 +202,7 @@ func getCustomHeaders(customHeaders *[]message.CustomHeader) []serialization.Cus
 }
 
 // getMetadata converts meta data to json-serialization ready format
-func getMetadata(metadata *[]message.Metadatas) []serialization.MetadataJson {
+func getMetadata(metadata *[]message.Metadata) []serialization.MetadataJson {
 
 	if len(*metadata) == 0 {
 		return nil
@@ -212,7 +212,7 @@ func getMetadata(metadata *[]message.Metadatas) []serialization.MetadataJson {
 
 	for _, sourceData := range *metadata {
 		results = append(results, serialization.MetadataJson{
-			Name:  sourceData.Name,
+			Key:  sourceData.Key,
 			Value: sourceData.Value,
 		})
 	}

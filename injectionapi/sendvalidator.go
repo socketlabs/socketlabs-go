@@ -184,13 +184,13 @@ func isValidBulkMessageCustomHeaders(message message.BulkMessage) bool {
 }
 
 func isValidBasicMessageMetadata(message message.BasicMessage) bool {
-	if message.Metadatas == nil {
+	if message.Metadata == nil {
 		return true
 	}
-	if len(message.Metadatas) == 0 {
+	if len(message.Metadata) == 0 {
 		return true
 	}
-	for _, metadata := range message.Metadatas {
+	for _, metadata := range message.Metadata {
 		if !metadata.IsValid() {
 			return false
 		}
@@ -199,13 +199,13 @@ func isValidBasicMessageMetadata(message message.BasicMessage) bool {
 }
 
 func isValidBulkMessageMetadata(message message.BulkMessage) bool {
-	if message.Metadatas == nil {
+	if message.Metadata == nil {
 		return true
 	}
-	if len(message.Metadatas) == 0 {
+	if len(message.Metadata) == 0 {
 		return true
 	}
-	for _, metadata := range message.Metadatas {
+	for _, metadata := range message.Metadata {
 		if !metadata.IsValid() {
 			return false
 		}

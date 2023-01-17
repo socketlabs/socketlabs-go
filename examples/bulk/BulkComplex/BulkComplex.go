@@ -49,6 +49,7 @@ func main() {
 
 	//Add message tags
 	bulk.Tags = append(bulk.Tags, "I am a Tag")
+	bulk.Tags = append(bulk.Tags, "go-Example")
 
 	var htmlBody bytes.Buffer
 	htmlBody.WriteString("<html>")
