@@ -15,3 +15,7 @@ debug
 *.out
 
 .vs/*
+pkg/*
+
+go.mod
+go.sum
