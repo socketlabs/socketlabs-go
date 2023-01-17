@@ -46,6 +46,8 @@ func main() {
 	bulk.AddCustomHeader("testMessageHeader", "I am a message header")
 
 	bulk.AddMetadata("testMetadata", "I am meta data")
+	bulk.Tags = append(bulk.Tags, "go-Example")
+	bulk.Tags = append(bulk.Tags, "Bulk-Example")
 
 	//Add message tags
 	bulk.Tags = append(bulk.Tags, "I am a Tag")

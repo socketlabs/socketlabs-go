@@ -61,6 +61,7 @@ func main() {
 	//Add message tags
 	basic.Tags = append(basic.Tags, "I am a Tag")
 	basic.Tags = append(basic.Tags, "go-Example")
+	basic.Tags = append(basic.Tags, "Basic-Example")
 
 	//Send the message
 	sendResponse, _ := client.SendBasic(&basic)
