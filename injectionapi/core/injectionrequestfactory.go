@@ -29,6 +29,7 @@ func (factory InjectionRequestFactory) GenerateBasicRequest(message *message.Bas
 		MessageID:   message.MessageId,
 		CharSet:     message.CharSet,
 		APITemplate: message.ApiTemplate,
+		Tags:        message.Tags,
 	}
 
 	//set attachments
@@ -36,6 +37,9 @@ func (factory InjectionRequestFactory) GenerateBasicRequest(message *message.Bas
 
 	//set custom headers
 	messageJson.CustomHeaders = getCustomHeaders(&message.CustomHeaders)
+
+	//set meta data
+	messageJson.Metadata = getMetadata(&message.Metadata)
 
 	//set from address
 	messageJson.From = serialization.AddressJson{
@@ -78,7 +82,7 @@ func (factory InjectionRequestFactory) GenerateBulkRequest(message *message.Bulk
 		MessageID:   message.MessageId,
 		CharSet:     message.CharSet,
 		APITemplate: message.ApiTemplate,
-		Tags:		 message.Tags,
+		Tags:        message.Tags,
 	}
 
 	//set attachments
@@ -212,7 +216,7 @@ func getMetadata(metadata *[]message.Metadata) []serialization.MetadataJson {
 
 	for _, sourceData := range *metadata {
 		results = append(results, serialization.MetadataJson{
-			Key:  sourceData.Key,
+			Key:   sourceData.Key,
 			Value: sourceData.Value,
 		})
 	}
