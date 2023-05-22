@@ -1,27 +1,27 @@
 package core
 
 import (
-	"github.com/socketlabs/socketlabs-go/injectionapi/core/enums"
 	"strings"
+
+	"github.com/socketlabs/socketlabs-go/injectionapi/core/enums"
 )
 
-
-//Parses a provided api key and provides a result.
+// Parses a provided api key and provides a result.
 type apiKeyParser struct{}
 
-func (apiKeyParser) Parse(wholeApiKey string) (response ApiParseResult) {
+func (apiKeyParser) Parse(wholeApiKey string) (response enums.ApiParseResult) {
 
 	if len(strings.TrimSpace(wholeApiKey)) == 0 {
 		response = InvalidEmptyOrWhitespace
 		return
 	}
-	
+
 	if len(strings.TrimSpace(wholeApiKey)) != 61 {
 		response = InvalidKeyLength
 		return
 	}
 
-	splitIndex := strings.Index(wholeApiKey,".")
+	splitIndex := strings.Index(wholeApiKey, ".")
 
 	if splitIndex == -1 || splitIndex > 50 {
 		response = InvalidKeyFormat
@@ -31,7 +31,7 @@ func (apiKeyParser) Parse(wholeApiKey string) (response ApiParseResult) {
 	apiKeyRunes := []rune(wholeApiKey)
 
 	publicPart := string(apiKeyRunes[0:splitIndex])
-	
+
 	if len(strings.TrimSpace(publicPart)) != 20 {
 		response = InvalidPublicPartLength
 		return
@@ -41,7 +41,6 @@ func (apiKeyParser) Parse(wholeApiKey string) (response ApiParseResult) {
 
 	secretPart := string(apiKeyRunes[splitIndex:len(wholeApiKey)])
 
-	
 	if len(strings.TrimSpace(secretPart)) != 40 {
 		response = InvalidSecretPartLength
 		return
