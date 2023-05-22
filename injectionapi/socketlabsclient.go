@@ -137,7 +137,7 @@ func (socketlabsClient *socketlabsClient) SendBasic(message *message.BasicMessag
 		return sendResponse, nil
 	}
 
-	jsonApiKey := socketlabsClient.ApiKey
+	jsonApiKey := socketlabsClient.APIKey
 
 	if keyParser.Parse(socketlabsClient.APIKey) == "Success" {
 		jsonApiKey = ""
@@ -200,7 +200,7 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 
 	tokenApiKey := ""
 
-	keyParser := apiKeyParser{}
+	keyParser := core.ApiKeyParser{}
 	if keyParser.Parse(socketlabsClient.APIKey) == "Success" {
 		tokenApiKey = socketlabsClient.APIKey
 	}

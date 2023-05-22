@@ -14,7 +14,7 @@ import (
 var ErrorCodes = []int{500, 502, 503, 504}
 
 type RetryHandler interface {
-	Send(serializedRequest []byte) (*http.Response, error)
+	Send(serializedRequest []byte, apiKeyToken string) (*http.Response, error)
 }
 
 type retryHandler struct {
@@ -32,8 +32,6 @@ func CreateRetryHandler(client *http.Client, endpointUrl string, settings RetryS
 }
 
 func (retryHandler *retryHandler) Send(serializedRequest []byte, apiKeyToken string) (*http.Response, error) {
-
-	fmt.Println("Got here")
 
 	if retryHandler.Settings.GetMaximumNumberOfRetries() == 0 {
 		request, err := createRequest(retryHandler.EndpointUrl, serializedRequest)
