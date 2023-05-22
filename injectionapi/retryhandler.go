@@ -30,13 +30,19 @@ func CreateRetryHandler(client *http.Client, endpointUrl string, settings RetryS
 	}
 }
 
-func (retryHandler *retryHandler) Send(serializedRequest []byte) (*http.Response, error) {
+func (retryHandler *retryHandler) Send(serializedRequest []byte, apiKeyToken string) (*http.Response, error) {
 
 	if retryHandler.Settings.GetMaximumNumberOfRetries() == 0 {
 		request, err := createRequest(retryHandler.EndpointUrl, serializedRequest)
 		if err != nil {
 			return nil, err
 		}
+
+		if len(strings.TrimSpace(apiKeyToken)) > 0 {
+			bearer := "Bearer " + apiKeyToken
+			request.Header.Set("Authrization", bearer)
+		}
+
 		response, err := retryHandler.HttpClient.Do(request)
 		return response, err
 	}
