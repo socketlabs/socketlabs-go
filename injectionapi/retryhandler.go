@@ -7,6 +7,7 @@ import (
 	"net"
 	"net/http"
 	"runtime"
+	"strings"
 	"time"
 )
 
@@ -17,16 +18,16 @@ type RetryHandler interface {
 }
 
 type retryHandler struct {
-	HttpClient *http.Client
+	HttpClient  *http.Client
 	EndpointUrl string
-	Settings RetrySettings
+	Settings    RetrySettings
 }
 
 func CreateRetryHandler(client *http.Client, endpointUrl string, settings RetrySettings) RetryHandler {
 	return &retryHandler{
-		HttpClient: client,
+		HttpClient:  client,
 		EndpointUrl: endpointUrl,
-		Settings: settings,
+		Settings:    settings,
 	}
 }
 
