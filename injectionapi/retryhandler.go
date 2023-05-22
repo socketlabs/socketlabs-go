@@ -40,7 +40,7 @@ func (retryHandler *retryHandler) Send(serializedRequest []byte, apiKeyToken str
 
 		if len(strings.TrimSpace(apiKeyToken)) > 0 {
 			bearer := "Bearer " + apiKeyToken
-			request.Header.Set("Authrization", bearer)
+			request.Header.Set("Authorization", bearer)
 		}
 
 		response, err := retryHandler.HttpClient.Do(request)
