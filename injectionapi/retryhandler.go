@@ -33,11 +33,15 @@ func CreateRetryHandler(client *http.Client, endpointUrl string, settings RetryS
 
 func (retryHandler *retryHandler) Send(serializedRequest []byte, apiKeyToken string) (*http.Response, error) {
 
+	fmt.Println("Got here")
+
 	if retryHandler.Settings.GetMaximumNumberOfRetries() == 0 {
 		request, err := createRequest(retryHandler.EndpointUrl, serializedRequest)
 		if err != nil {
 			return nil, err
 		}
+
+		fmt.Println(apiKeyToken)
 
 		if len(strings.TrimSpace(apiKeyToken)) > 0 {
 			bearer := "Bearer " + apiKeyToken
