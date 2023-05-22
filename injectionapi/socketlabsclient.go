@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/socketlabs/socketlabs-go/injectionapi/core"
-	"github.com/socketlabs/socketlabs-go/injectionapi/core/enums"
 	"github.com/socketlabs/socketlabs-go/injectionapi/core/serialization"
 	"github.com/socketlabs/socketlabs-go/injectionapi/message"
 )
@@ -49,21 +48,21 @@ type ISocketlabsClient interface {
 
 // socketlabsClient is the default ISocketlabsClient implementation
 type socketlabsClient struct {
-	ServerID    int
-	APIKey      string
-	EndpointURL string
-	ProxyURL    string
-	RequestTimeout int
+	ServerID        int
+	APIKey          string
+	EndpointURL     string
+	ProxyURL        string
+	RequestTimeout  int
 	NumberOfRetries int
 }
 
 // CreateClient instatiates new client using the specified credentials
 func CreateClient(serverID int, apiKey string) ISocketlabsClient {
 	return &socketlabsClient{
-		ServerID:    serverID,
-		APIKey:      apiKey,
-		EndpointURL: endpointURL,
-		RequestTimeout: requestTimeout,
+		ServerID:        serverID,
+		APIKey:          apiKey,
+		EndpointURL:     endpointURL,
+		RequestTimeout:  requestTimeout,
 		NumberOfRetries: numberOfRetries,
 	}
 }
@@ -71,11 +70,11 @@ func CreateClient(serverID int, apiKey string) ISocketlabsClient {
 // CreateClientWithProxy instatiates new client using the specified credentials
 func CreateClientWithProxy(serverID int, apiKey string, proxyURL string) ISocketlabsClient {
 	return &socketlabsClient{
-		ServerID:    serverID,
-		APIKey:      apiKey,
-		EndpointURL: endpointURL,
-		ProxyURL:    proxyURL,
-		RequestTimeout: requestTimeout,
+		ServerID:        serverID,
+		APIKey:          apiKey,
+		EndpointURL:     endpointURL,
+		ProxyURL:        proxyURL,
+		RequestTimeout:  requestTimeout,
 		NumberOfRetries: numberOfRetries,
 	}
 }
@@ -96,7 +95,7 @@ func (socketlabsClient *socketlabsClient) SetRequestTimeout(timeout int) {
 }
 
 // SetNumberOfRetries sets the retries
-func (socketlabsClient *socketlabsClient) SetNumberOfRetries(retries int)  {
+func (socketlabsClient *socketlabsClient) SetNumberOfRetries(retries int) {
 	socketlabsClient.NumberOfRetries = retries
 }
 
@@ -124,7 +123,7 @@ func (socketlabsClient *socketlabsClient) SendBasic(message *message.BasicMessag
 
 	validator := sendValidator{}
 
-	keyParser := apiKeyParser{}
+	keyParser := core.ApiKeyParser{}
 
 	sendResponse = validator.ValidateCredentials(socketlabsClient.ServerID, socketlabsClient.APIKey)
 	if sendResponse.Result != SendResultSUCCESS {
@@ -140,7 +139,7 @@ func (socketlabsClient *socketlabsClient) SendBasic(message *message.BasicMessag
 
 	jsonApiKey := socketlabsClient.ApiKey
 
-	if keyParser.Parse(socketlabsClient.APIKey) == Success {
+	if keyParser.Parse(socketlabsClient.APIKey) == "Success" {
 		jsonApiKey = ""
 	}
 
@@ -202,7 +201,7 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 	tokenApiKey := ""
 
 	keyParser := apiKeyParser{}
-	if keyParser.Parse(socketlabsClient.APIKey) == Success {
+	if keyParser.Parse(socketlabsClient.APIKey) == "Success" {
 		tokenApiKey = socketlabsClient.APIKey
 	}
 
