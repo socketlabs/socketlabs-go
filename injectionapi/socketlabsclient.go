@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/socketlabs/socketlabs-go/injectionapi/core"
+	"github.com/socketlabs/socketlabs-go/injectionapi/core/enums"
 	"github.com/socketlabs/socketlabs-go/injectionapi/core/serialization"
 	"github.com/socketlabs/socketlabs-go/injectionapi/message"
 )
@@ -123,6 +124,8 @@ func (socketlabsClient *socketlabsClient) SendBasic(message *message.BasicMessag
 
 	validator := sendValidator{}
 
+	keyParser := apiKeyParser{}
+
 	sendResponse = validator.ValidateCredentials(socketlabsClient.ServerID, socketlabsClient.APIKey)
 	if sendResponse.Result != SendResultSUCCESS {
 		sendResponse.ResponseMessage = sendResponse.Result.ToResponseMessage()
@@ -135,10 +138,16 @@ func (socketlabsClient *socketlabsClient) SendBasic(message *message.BasicMessag
 		return sendResponse, nil
 	}
 
+	jsonApiKey := socketlabsClient.ApiKey
+
+	if keyParser.Parse(socketlabsClient.APIKey) == Success {
+		jsonApiKey = ""
+	}
+
 	//create injection request from factory
 	factory := core.InjectionRequestFactory{
 		ServerID: socketlabsClient.ServerID,
-		APIKey:   socketlabsClient.APIKey,
+		APIKey:   jsonApiKey,
 	}
 	request := factory.GenerateBasicRequest(message)
 
@@ -190,9 +199,16 @@ func (socketlabsClient socketlabsClient) sendInjectionRequest(injectionRequest *
 		return SendResponse{}, err
 	}
 
+	tokenApiKey := ""
+
+	keyParser := apiKeyParser{}
+	if keyParser.Parse(socketlabsClient.APIKey) == Success {
+		tokenApiKey = socketlabsClient.APIKey
+	}
+
 	//issue http request
 	retryHandler := CreateRetryHandler(client, socketlabsClient.EndpointURL, CreateRetrySettings(socketlabsClient.NumberOfRetries))
-	resp, err := retryHandler.Send(serializedRequest)
+	resp, err := retryHandler.Send(serializedRequest, tokenApiKey)
 	if err != nil {
 		return SendResponse{}, err
 	}
