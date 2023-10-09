@@ -67,6 +67,8 @@ func (sendResult SendResult) ToResponseMessage() string {
 		return "No valid message body was found in the message"
 	case SendResultINVALIDTEMPLATEID:
 		return "An invalid TemplateId was found in the message"
+	case SendResultMETADATAORTAGSARETOOLARGE:
+		return "Metadata and tags exceed 12.5KB"
 	case SendResultTEMPLATEHASNOCONTENT:
 		return "The specified TemplateId has no content for the message"
 	case SendResultMESSAGEBODYCONFLICT:
@@ -126,6 +128,7 @@ var m = map[SendResult]string{
 	SendResultEMPTYTOADDRESS:                        "EmptyToAddress",
 	SendResultNOVALIDBODYPARTS:                      "NoValidBodyParts",
 	SendResultINVALIDTEMPLATEID:                     "InvalidTemplateID",
+	SendResultMETADATAORTAGSARETOOLARGE:             "MetadataOrTagsAreTooLarge",
 	SendResultTEMPLATEHASNOCONTENT:                  "TemplateHasNoContent",
 	SendResultMESSAGEBODYCONFLICT:                   "MessageBodyConflict",
 	SendResultINVALIDMERGEDATA:                      "InvalidMergeData",
@@ -211,6 +214,9 @@ const (
 
 	//SendResultINVALIDTEMPLATEID - An invalid TemplateId was found in the message
 	SendResultINVALIDTEMPLATEID
+
+	//SendResultMETADATAORTAGSARETOOLARGE - Metadata and tags exceed 12.5KB
+	SendResultMETADATAORTAGSARETOOLARGE
 
 	//SendResultTEMPLATEHASNOCONTENT - The specified TemplateId has no content for the message
 	SendResultTEMPLATEHASNOCONTENT
