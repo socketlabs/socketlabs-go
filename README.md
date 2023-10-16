@@ -192,6 +192,7 @@ For more information about AMP please see [AMP Project](https://amp.dev/document
 
 <a name="version"></a>
 # Version
+* 1.4.2 - Added MetadataOrTagsAreTooLarge error messsage
 * 1.4.1 - Added Parsing for new Api Keys
 * 1.4.0 - Adding Metadata and Tags
 * 1.2.1 - Adding optional retry logic for Http requests. If configured, the request will retry when certain 500 errors occur (500, 502, 503, 504)
